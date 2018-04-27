@@ -61,7 +61,7 @@ echo $max_instances
 #--cache-subnet-group-name default \
 #--security-group-ids $sg
 
-aws rds wait db-instance-available --db-instance-identifier mydbinstance
+#aws rds wait db-instance-available --db-instance-identifier mydbinstance
 
 #Get the list of subnets from the VPC
 #subnets=$(aws ec2 describe-subnets --filters "Name =vpc-id,Values=$vpcid" --query 'Subnets[*].[SubnetId]')
@@ -69,7 +69,7 @@ subnets=`aws ec2 describe-subnets --filters  --query 'Subnets[*].SubnetId' --out
 echo $subnets
 
 #Creating Launch Config
-aws autoscaling create-launch-configuration --key-name $key_pair --launch-configuration-name itmo-544-lc --iam-instance-profile $iamrole \
+aws autoscaling create-launch-configuration --key-name $key_pair --launch-configuration-name redis-lc --iam-instance-profile $iamrole \
 --image-id $ami_id --instance-type t2.micro --security-groups $sg --instance-monitoring Enabled=true --user-data file://enable-redis-access.sh
 
 #Creating Load Balancer and Target Group
@@ -91,7 +91,7 @@ aws elbv2 create-listener --load-balancer-arn $LB_ARN \
 
 #Create Auto Scaling Group with target-group
 aws autoscaling create-auto-scaling-group --auto-scaling-group-name redis-asg \
---launch-configuration-name itmo-544-lc \
+--launch-configuration-name redis-lc \
 --availability-zones us-east-1c \
 --target-group-arns $TARGET_ARN \
 --min-size $min_instances --max-size $max_instances --desired-capacity 2
