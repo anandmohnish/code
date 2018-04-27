@@ -8,10 +8,10 @@ set -e
 #Verbose output
 #set -v
 
-sudo yum install gcc
+sudo yum install gcc -y
 wget http://download.redis.io/redis-stable.tar.gz
 tar xvzf redis-stable.tar.gz
 cd redis-stable
 #make distclean  // Ubuntu systems only
 make
-src/redis-cli -c -h mycachecluster.eaogs8.0001.usw2.cache.amazonaws.com -p 6379
+#src/redis-cli -c -h mycachecluster.eaogs8.0001.usw2.cache.amazonaws.com -p 6379
