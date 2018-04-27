@@ -27,7 +27,7 @@ set -e
 #read vpcid
 
 
-ami_id=ami-f973ab84
+ami_id=ami-43a15f3e
 #Commnet below after final test run
 key_pair=itmo-544-key
 sg=sg-036c9a70
