@@ -13,28 +13,28 @@ set -e
 #echo "Enter Number of instances you want to create (count) : "
 #read count
 #Uncommnet below after final test run
-echo "Enter the name of keypair you want to associate with EC2 Instances : "
-read key_pair
-echo "Enter the name of security group you want to associate with EC2 and Redis instance : "
-read sg
-echo "Enter IAM Role name to be associated with Auto Scaling Group : "
-read iamrole
-echo "Enter Minimum Instance Required for Scaling Group - Desired Value is 1"
-read min_instances
-echo "Enter Maximum Instances Required for Scaling Group - Desired Value is 3 or 5"
-read max_instances
-echo "Enter VPC ID you want to associate with Loab Balancer :"
-read vpcid
+#echo "Enter the name of keypair you want to associate with EC2 Instances : "
+#read key_pair
+#echo "Enter the name of security group you want to associate with EC2 and Redis instance : "
+#read sg
+#echo "Enter IAM Role name to be associated with Auto Scaling Group : "
+#read iamrole
+#echo "Enter Minimum Instance Required for Scaling Group - Desired Value is 1"
+#read min_instances
+#echo "Enter Maximum Instances Required for Scaling Group - Desired Value is 3 or 5"
+#read max_instances
+#echo "Enter VPC ID you want to associate with Loab Balancer :"
+#read vpcid
 
 
 ami_id=ami-f973ab84
 #Commnet below after final test run
-#key_pair=itmo-544-key
-#sg=sg-036c9a70
-#min_instances=1
-#max_instances=3
-#vpcid=vpc-8cb737f5
-#iamrole=test-ec2
+key_pair=itmo-544-key
+sg=sg-036c9a70
+min_instances=1
+max_instances=3
+vpcid=vpc-8cb737f5
+iamrole=test-ec2
 
 echo $ami_id
 echo $count
