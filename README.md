@@ -4,7 +4,7 @@
 
 ### Before Running the code, do this -
  1. Run aws configure , on the machine you will run the code from. Set Default region and Default output to us-east-1 and json.
- ![Install-Plugins](images/Capture-aws-configure.JPG)
+ ![AWS-Configure](images/Capture-aws-configure.JPG)
 
 ### How to run the code ?
  1. Download the git repo to a location.
