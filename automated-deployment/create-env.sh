@@ -17,8 +17,8 @@ echo "Enter the name of keypair you want to associate with EC2 Instances : "
 read key_pair
 echo "Enter the name of security group you want to associate with ASG EC2 and Redis instance : "
 read sg
-#echo "Enter IAM Role name to be associated with Auto Scaling Group : "
-#read iamrole
+echo "Enter IAM Role name to be associated with Auto Scaling Group : "
+read iamrole
 echo "Enter Minimum Instance Required for Scaling Group - Desired Value is 1"
 read min_instances
 echo "Enter Maximum Instances Required for Scaling Group - Desired Value is 3 or 5"
