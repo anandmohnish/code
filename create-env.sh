@@ -71,6 +71,7 @@ echo $subnets
 #Creating Launch Config
 aws autoscaling create-launch-configuration --key-name $key_pair --launch-configuration-name redis-lc --iam-instance-profile $iamrole \
 --image-id $ami_id --instance-type t2.micro --security-groups $sg --instance-monitoring Enabled=true --user-data file://enable-redis-access.sh
+#--no-associate-public-ip-address
 
 #Creating Load Balancer and Target Group
 LB_ARN=$(aws elbv2 create-load-balancer --name redis-lb \
