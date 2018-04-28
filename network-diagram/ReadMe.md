@@ -1,4 +1,4 @@
-# Network Diagram for NAT enabled VPC's connected on aws
+# Network Diagram for NAT enabled VPC's connected on AWS
 
 ![Devops](devops.jpg)
 
