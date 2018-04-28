@@ -68,7 +68,7 @@ subnets=`aws ec2 describe-subnets --filters  --query 'Subnets[*].SubnetId' --out
 echo $subnets
 
 #Creating Launch Config
-aws autoscaling create-launch-configuration --key-name $key_pair --launch-configuration-name redis-lc --iam-instance-profile $iamrole \
+aws autoscaling create-launch-configuration --key-name $key_pair --launch-configuration-name redis-lc \
 --image-id $ami_id --instance-type t2.micro --security-groups $sg --instance-monitoring Enabled=true --user-data file://enable-redis-access.sh
 #--no-associate-public-ip-address
 
