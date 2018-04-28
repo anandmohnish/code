@@ -50,16 +50,16 @@ echo $max_instances
 #aws iam put-role-policy --role-name auto-scaling-role --policy-name S3-Rds-Ec2-Full --policy-document file://./iam-policies/s3-rds-ec2-policy.json
 
 #Create Redis Multi AZ Cluster Disabled Instance
-#aws elasticache create-replication-group \
-#--replication-group-id redis-group \
-#--replication-group-description "My Redis Description" \
-#--automatic-failover-enabled \
-#--num-cache-clusters 2 \
-#--cache-node-type cache.m3.medium  \
-#--engine redis \
-#--engine-version 3.2.10 \
-#--cache-subnet-group-name default \
-#--security-group-ids $sg
+aws elasticache create-replication-group \
+--replication-group-id redis-group \
+--replication-group-description "My Redis Description" \
+--automatic-failover-enabled \
+--num-cache-clusters 2 \
+--cache-node-type cache.m3.medium  \
+--engine redis \
+--engine-version 3.2.10 \
+--cache-subnet-group-name default \
+--security-group-ids $sg
 
 #aws rds wait db-instance-available --db-instance-identifier mydbinstance
 
