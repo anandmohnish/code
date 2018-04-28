@@ -95,3 +95,40 @@ aws autoscaling create-auto-scaling-group --auto-scaling-group-name redis-asg \
 --availability-zones us-east-1c \
 --target-group-arns $TARGET_ARN \
 --min-size $min_instances --max-size $max_instances --desired-capacity 2
+
+#Create Scale Out Policy
+SOUT_ARN=$(aws autoscaling put-scaling-policy \
+--policy-name my-scaleout-policy \
+--auto-scaling-group-name redis-asg \
+--scaling-adjustment 2 \
+--adjustment-type ChangeInCapacity | grep PolicyARN | grep -o -P '(?<="PolicyARN": ").*(?=")')
+
+#Create Scale In Policy
+SIN_ARN=$(aws autoscaling put-scaling-policy \
+--policy-name my-scalein-policy \
+--auto-scaling-group-name redis-asg \
+--scaling-adjustment -2 \
+--adjustment-type ChangeInCapacity | grep PolicyARN | grep -o -P '(?<="PolicyARN": ").*(?=")')
+
+#Create Alarms Add Capacity
+aws cloudwatch put-metric-alarm \
+--alarm-name AddCapacity --metric-name \
+CPUUtilization --namespace AWS/EC2 \
+--statistic Average --period 120 \
+--threshold 80 \
+--comparison-operator GreaterThanOrEqualToThreshold \
+--dimensions "Name=AutoScalingGroupName,Value=redis-asg" \
+--evaluation-periods 2 --alarm-actions $SOUT_ARN
+
+#Create Alarm Remove Capacity
+aws cloudwatch put-metric-alarm \
+--alarm-name RemoveCapacity \
+--metric-name CPUUtilization \
+--namespace AWS/EC2 \
+--statistic Average \
+--period 120 \
+--threshold 40 \
+--comparison-operator LessThanOrEqualToThreshold \
+--dimensions "Name=AutoScalingGroupName,Value=redis-asg" \
+--evaluation-periods 2 \
+--alarm-actions $SIN_ARN

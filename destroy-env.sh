@@ -9,6 +9,14 @@ aws autoscaling delete-auto-scaling-group --auto-scaling-group-name redis-asg --
 #Delete Autoscaling Configuration
 aws autoscaling delete-launch-configuration --launch-configuration-name redis-lc
 
+#Delete Scaling Policies
+aws autoscaling delete-policy --auto-scaling-group-name redis-asg --policy-name my-scaleout-policy
+aws autoscaling delete-policy --auto-scaling-group-name redis-asg --policy-name my-scalein-policy
+
+#Delete Alarm
+aws cloudwatch delete-alarms --alarm-names AddCapacity
+aws cloudwatch delete-alarms --alarm-names RemoveCapacity
+
 #Delete Load Balancer
 lb_arn=$(aws elbv2 describe-load-balancers --names redis-lb | grep LoadBalancerArn | grep -o -P '(?<="LoadBalancerArn": ").*(?=")')
 lis_arn=$(aws elbv2 describe-listeners --load-balancer-arn $lb_arn |grep ListenerArn | grep -o -P '(?<="ListenerArn": ").*(?=")')
