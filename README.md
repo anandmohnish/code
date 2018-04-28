@@ -24,6 +24,11 @@
  4. Maximum Instance Required for Scaling Group
  5. VPCID
 
+#### ** Redis instance can be scaled using the below command when required (it will scale UP to R4 instance type) :
+  1. aws elasticache modify-replication-group \
+	    --replication-group-id redis-group \
+	    --cache-node-type cache.r4.large \
+	    --apply-immediately
 #### ** The code launches all instances in us-east-1 region
 #### ** The code assumes that for the security group being entered has the below ports open in the security group
   1. 22
