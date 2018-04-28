@@ -37,3 +37,9 @@ aws ec2 terminate-instances --instance-ids $iid1
 aws ec2 terminate-instances --instance-ids $iid2
 aws ec2 terminate-instances --instance-ids $iid3
 aws ec2 terminate-instances --instance-ids $iid4
+
+#Delete Redis Replication Group
+aws elasticache delete-replication-group \
+--replication-group-id redis-group \
+--no-retain-primary-cluster \
+--final-snapshot-identifier NO
