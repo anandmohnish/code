@@ -19,7 +19,7 @@
 
  #### ** Script asks for various inputs, such as :
  1. Key Pair Name
- 2. Security Group
+ 2. Security Group (Port 22,80 and 6379 should be added)
  3. Minimum Instance Required for Scaling Group
  4. Maximum Instance Required for Scaling Group
  5. VPCID
