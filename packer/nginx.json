@@ -2,7 +2,7 @@
     "builders": [{
       "type": "docker",
       "image": "nginx:1.12.1",
-      "commit": "true",
+      "commit": "true"
     }],
     "post-processors": [
       [
