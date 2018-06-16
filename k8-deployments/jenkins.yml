@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: ap/jenkins:0.1
+        image: 552505984612.dkr.ecr.us-east-1.amazonaws.com/k8-docker-images:0.1
         ports:
         - containerPort: 8080
