@@ -24,5 +24,5 @@ apt-get update
 
 #Install Jenkins
 apt-get install -y jenkins
-apt-get install openjdk-8-jdk
+apt-get install openjdk-8-jdk -y
 service jenkins start 
