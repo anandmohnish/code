@@ -1,0 +1,29 @@
+{
+    "builders": [{
+      "type": "docker",
+      "image": "ubuntu:16.04",
+      "commit": "true",
+      "changes": [
+        "ENV ANDROID_HOME /root/opt/android-sdk-linux",
+        "ENV JAVA_HOME /usr",
+        "ENV RELEASE_BIN ~/gitrelease/bin/linux/amd64/github-release",
+        "CMD service jenkins start && bash"
+      ]
+    }],
+	"provisioners": [
+    {
+      "type": "shell",
+      "script": "jenkins-install.sh"
+	}
+],
+    "post-processors": [
+      [
+	{
+ 	 "type": "docker-tag",
+ 	 "repository": "ap/jenkins",
+ 	 "tag": "0.1"
+	}
+        
+      ]
+    ]
+}
