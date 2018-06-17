@@ -16,6 +16,6 @@ spec:
       - name: nginx
         image: 552505984612.dkr.ecr.us-east-1.amazonaws.com/k8-docker-images:nginx
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        args: [ "while true; do sleep 30; done; service nginx start" ]
         ports:
         - containerPort: 80
