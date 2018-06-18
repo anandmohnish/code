@@ -24,6 +24,6 @@ spec:
         #command: ["sh","-c","/usr/local/tomcat/bin/startup.sh"]
         #command: [ "/usr/local/tomcat/bin/startup.sh", "run" ]
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "service httpd start && while true; do sleep 30; done;" ]
+        args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 80
