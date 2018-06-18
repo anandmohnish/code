@@ -5,13 +5,18 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx-a
-  
+      app: nginx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   replicas: 3
   template:
     metadata:
       labels:
-        app: nginx-a
+        app: nginx
     spec:
       containers:
       - name: apache
@@ -21,4 +26,4 @@ spec:
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "/usr/local/apache2/bin/httpd && while true; do sleep 30; done;" ]
         ports:
-        - containerPort: 80
+        - containerPort: 80 
