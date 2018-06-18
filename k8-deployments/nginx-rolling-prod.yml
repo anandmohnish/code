@@ -5,18 +5,20 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-a
   
   replicas: 3
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-a
     spec:
       containers:
-      - name: nginx
-        image: tomcat:9.0
+      - name: apache
+        image: httpd:2.4
+        #command: ["sh","-c","/usr/local/tomcat/bin/startup.sh"]
+        #command: [ "/usr/local/tomcat/bin/startup.sh", "run" ]
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "/usr/local/tomcat/bin/startup.sh" ]
+        args: [ "/usr/local/apache2/bin/httpd && while true; do sleep 30; done;" ]
         ports:
-        - containerPort: 8080
+        - containerPort: 80
